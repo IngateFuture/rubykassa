@@ -18,7 +18,7 @@ module Rubykassa
       is_test:     'IsTest'.freeze
     }.freeze
 
-    attr_accessor :invoice_id, :total, :params
+    attr_accessor :invoice_id, :total, :out_sum_currency, :params
 
     def initialize(&block)
       instance_eval &block if block_given?
@@ -47,6 +47,7 @@ module Rubykassa
         login: Rubykassa.login,
         total: @total,
         invoice_id: @invoice_id,
+        out_sum_currency: @out_sum_currency,
         is_test: test_mode? ? 1 : 0,
         signature: generate_signature_for(:payment)
       }
